@@ -40,20 +40,14 @@ for city_coordinates in city_coordinates_list:
         print("Data for city:", city_coordinates)
         print(json.dumps(data, indent=2))
 
-        extracted_data = [
-            {"datetime": entry["timestamp_utc"], "aqi": entry["aqi"]}
-            for entry in data["data"]["history"]["aqi"]
-        ]
-
+        # Store the entire response in the dictionary
         city_name = f"{city_coordinates['lat']}_{city_coordinates['lon']}"
-        all_city_data[city_name] = extracted_data
+        all_city_data[city_name] = data
 
     else:
         print(f"Error for city {city_coordinates}: {response.status_code}")
 
-
 time_12_hours_from_now = current_time + timedelta(hours=12)
-
 
 output_data = {"timestamp": time_12_hours_from_now.isoformat(), "cities": all_city_data}
 
