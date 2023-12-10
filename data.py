@@ -11,16 +11,18 @@ city_coordinates_list = [
     {"lat": "50.9375", "lon": "6.9603"}, #Cologne
     {"lat": "50.1109", "lon": "8.6821"}, #Frankfurt
     {"lat": "48.7758", "lon": "9.1829"}, #Stuttgart
-    {"lat": "51.2277", "lon": "6.7735"}, #Dusseldorf
-    {"lat": "51.3397", "lon": "12.3731"}, #Leipzig
-    {"lat": "51.5136", "lon": "7.4653"}, #Dortmund
-    {"lat": "51.4556", "lon": "7.0116"}, #Essen
     {"lat": "53.0793", "lon": "8.8017"}, #Bremen
     {"lat": "51.0504", "lon": "13.7373"}, #Dresden
-    {"lat": "52.3759", "lon": "9.7320"}, #Hanover
-    {"lat": "49.4521", "lon": "11.0767"}, #Nuremberg
-    {"lat": "51.4344", "lon": "6.7623"} #Duisburg
+    {"lat": "52.3759", "lon": "9.7320"}, #Hannover
+    {"lat": "50.9848", "lon": "11.0299"}, #Erfurt
+    {"lat": "54.3233", "lon": "10.1228"}, #Kiel
+    {"lat": "52.1205", "lon": "11.6276"}, #Magdeburg
+    {"lat": "49.9929", "lon": "8.2473"}, #Mainz
+    {"lat": "52.3906", "lon": "13.0645"}, #Potsdam
+    {"lat": "49.2382", "lon": "6.9975"}, #Saarbrucken
+    {"lat": "53.6355", "lon": "11.4012"} #Schwerin
 ]
+
 
 headers = {
     "X-RapidAPI-Key": rapidapi_key,
