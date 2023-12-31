@@ -1,59 +1,64 @@
-import requests
-import json
-from datetime import datetime, timedelta
+import openmeteo_requests
 
-rapidapi_key = "3425d39d3bmshe80957c784ebb11p1552a4jsnaecd6c95eff4"
+import requests_cache
+import pandas as pd
+from retry_requests import retry
 
-city_coordinates_list = [
-    {"lat": "52.520008", "lon": "13.404954"}, #Berlin
-    {"lat": "53.5488", "lon": "9.9872"}, #Hamburg
-    {"lat": "48.1351", "lon": "11.582"}, #Munich
-    {"lat": "50.9375", "lon": "6.9603"}, #Cologne
-    {"lat": "50.1109", "lon": "8.6821"}, #Frankfurt
-    {"lat": "48.7758", "lon": "9.1829"}, #Stuttgart
-    {"lat": "53.0793", "lon": "8.8017"}, #Bremen
-    {"lat": "51.0504", "lon": "13.7373"}, #Dresden
-    {"lat": "52.3759", "lon": "9.7320"}, #Hannover
-    {"lat": "50.9848", "lon": "11.0299"}, #Erfurt
-    {"lat": "54.3233", "lon": "10.1228"}, #Kiel
-    {"lat": "52.1205", "lon": "11.6276"}, #Magdeburg
-    {"lat": "49.9929", "lon": "8.2473"}, #Mainz
-    {"lat": "52.3906", "lon": "13.0645"}, #Potsdam
-    {"lat": "49.2382", "lon": "6.9975"}, #Saarbrucken
-    {"lat": "53.6355", "lon": "11.4012"} #Schwerin
-]
+# Setup the Open-Meteo API client with cache and retry on error
+cache_session = requests_cache.CachedSession('.cache', expire_after = 3600)
+retry_session = retry(cache_session, retries = 5, backoff_factor = 0.2)
+openmeteo = openmeteo_requests.Client(session = retry_session)
 
-
-headers = {
-    "X-RapidAPI-Key": rapidapi_key,
-    "X-RapidAPI-Host": "air-quality.p.rapidapi.com",
+# Make sure all required weather variables are listed here
+# The order of variables in hourly or daily is important to assign them correctly below
+url = "https://air-quality-api.open-meteo.com/v1/air-quality"
+params = {
+	"latitude": 52.52,
+	"longitude": 13.41,
+	"current": ["european_aqi", "pm10", "pm2_5", "uv_index"],
+	"hourly": ["pm10", "pm2_5", "uv_index"],
+	"forecast_days": 3,
+	"domains": "cams_europe"
 }
+responses = openmeteo.weather_api(url, params=params)
 
-current_time = datetime.utcnow()
+# Process first location. Add a for-loop for multiple locations or weather models
+response = responses[0]
+print(f"Coordinates {response.Latitude()}°E {response.Longitude()}°N")
+print(f"Elevation {response.Elevation()} m asl")
+print(f"Timezone {response.Timezone()} {response.TimezoneAbbreviation()}")
+print(f"Timezone difference to GMT+0 {response.UtcOffsetSeconds()} s")
 
-all_city_data = {}
+# Current values. The order of variables needs to be the same as requested.
+current = response.Current()
+current_european_aqi = current.Variables(0).Value()
+current_pm10 = current.Variables(1).Value()
+current_pm2_5 = current.Variables(2).Value()
+current_uv_index = current.Variables(3).Value()
 
-for city_coordinates in city_coordinates_list:
-    url = "https://air-quality.p.rapidapi.com/forecast/airquality"
-    response = requests.get(url, headers=headers, params=city_coordinates)
+print(f"Current time {current.Time()}")
+print(f"Current european_aqi {current_european_aqi}")
+print(f"Current pm10 {current_pm10}")
+print(f"Current pm2_5 {current_pm2_5}")
+print(f"Current uv_index {current_uv_index}")
 
-    if response.status_code == 200:
-        data = response.json()
-        print("Data for city:", city_coordinates)
-        print(json.dumps(data, indent=2))
+# Process hourly data. The order of variables needs to be the same as requested.
+hourly = response.Hourly()
+hourly_pm10 = hourly.Variables(0).ValuesAsNumpy()
+hourly_pm2_5 = hourly.Variables(1).ValuesAsNumpy()
+hourly_uv_index = hourly.Variables(2).ValuesAsNumpy()
 
-        # Store the entire response in the dictionary
-        city_name = f"{city_coordinates['lat']}_{city_coordinates['lon']}"
-        all_city_data[city_name] = data
+hourly_data = {"date": pd.date_range(
+	start = pd.to_datetime(hourly.Time(), unit = "s"),
+	end = pd.to_datetime(hourly.TimeEnd(), unit = "s"),
+	freq = pd.Timedelta(seconds = hourly.Interval()),
+	inclusive = "left"
+)}
+hourly_data["pm10"] = hourly_pm10
+hourly_data["pm2_5"] = hourly_pm2_5
+hourly_data["uv_index"] = hourly_uv_index
 
-    else:
-        print(f"Error for city {city_coordinates}: {response.status_code}")
+hourly_dataframe = pd.DataFrame(data = hourly_data)
+print(hourly_dataframe)
 
-time_12_hours_from_now = current_time + timedelta(hours=12)
 
-output_data = {"timestamp": time_12_hours_from_now.isoformat(), "cities": all_city_data}
-
-with open("air_quality_data.json", "w") as json_file:
-    json.dump(output_data, json_file, indent=2)
-
-print("Data saved successfully to air_quality_data.json")
