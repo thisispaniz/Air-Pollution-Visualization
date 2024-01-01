@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Choropleth Map</title>
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+</head>
+<body>
+
+<script>
+// Your data
+const cityData = {
+  "latitude": 52.549995,
+  "longitude": 13.450001,
+  // ... other data fields ...
+  "hourly": {
+    "time": ["2024-01-01T00:00", "2024-01-01T01:00", /* ... */],
+    "european_aqi": [19, 15, 15, /* ... */]
+  }
+};
+
+// Load GeoJSON file for Germany
+d3.json('2_hoch.geo.json').then((geojson) => {
+  // Merge your data with GeoJSON based on common identifier (e.g., region name)
+  const mergedData = mergeDataWithGeoJSON(cityData, geojson);
+
+  // Create choropleth map
+  createChoroplethMap(mergedData);
+});
+
+// Function to merge your data with GeoJSON
+function mergeDataWithGeoJSON(data, geojson) {
+  // Implement this function based on your data and GeoJSON structure
+  // Return a new GeoJSON object with added properties from your data
+  // For example, you might use the latitude and longitude to match features
+
+  // Dummy implementation
+  const mergedFeatures = geojson.features.map(feature => {
+    return {
+      ...feature,
+      properties: {
+        ...feature.properties,
+        european_aqi: getRandomAQI(), // Replace with actual AQI value
+      },
+    };
+  });
+
+  return {
+    ...geojson,
+    features: mergedFeatures,
+  };
+}
+
+// Function to create choropleth map
+function createChoroplethMap(geojson) {
+  const svgWidth = 600;
+  const svgHeight = 400;
+
+  const svg = d3.select('body').append('svg')
+    .attr('width', svgWidth)
+    .attr('height', svgHeight);
+
+  // Create a projection for Germany (you might need to adjust this)
+  const projection = d3.geoMercator()
+    .fitSize([svgWidth, svgHeight], geojson);
+
+  // Create a path generator
+  const path = d3.geoPath().projection(projection);
+
+  // Define a color scale based on European AQI
+  const colorScale = d3.scaleSequential(d3.interpolateViridis)
+    .domain([0, d3.max(geojson.features, d => d.properties.european_aqi)]);
+
+  // Draw map
+  svg.selectAll('path')
+    .data(geojson.features)
+    .enter().append('path')
+    .attr('d', path)
+    .attr('fill', d => colorScale(d.properties.european_aqi));
+
+  // Add a legend
+  const legend = svg.append('g')
+    .attr('transform', `translate(20, 20)`);
+
+  const legendScale = d3.scaleLinear()
+    .domain([0, d3.max(geojson.features, d => d.properties.european_aqi)])
+    .range([0, 200]);
+
+  const legendAxis = d3.axisRight(legendScale);
+
+  legend.append('g')
+    .attr('class', 'legend-axis')
+    .call(legendAxis);
+
+  legend.append('text')
+    .attr('transform', 'rotate(-90)')
+    .attr('y', 6)
+    .attr('dy', '0.71em')
+    .attr('text-anchor', 'end')
+    .text('European AQI');
+}
+
+// Helper function to generate a random AQI for testing purposes
+function getRandomAQI() {
+  return Math.floor(Math.random() * 100);
+}
+
+</script>
+<script src="weather.js"></script>
+</body>
+</html>
