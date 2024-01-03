@@ -1,56 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Choropleth Map</title>
-  <script src="https://d3js.org/d3.v5.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choropleth Map</title>
+    <!-- Include D3.js library -->
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://d3js.org/d3.v4.js"></script>
+    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+    <script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
 </head>
 <body>
 
-<script>
-// Your data
-const cityData = {
-  "latitude": 52.549995,
-  "longitude": 13.450001,
-  // ... other data fields ...
-  "hourly": {
-    "time": ["2024-01-01T00:00", "2024-01-01T01:00", /* ... */],
-    "european_aqi": [19, 15, 15, /* ... */]
-  }
-};
+    <script>
+        const locations = [
+            { latitude: 52.52, longitude: 13.41 },
+            { latitude: 52.52, longitude: 13.40}, //Berlin
+            { latitude: 53.55, longitude: 9.99}, //Hamburg
+            { latitude: 48.14, longitude: 11.58}, //Munich
+            { latitude: 51.23, longitude: 6.78}, //Düsseldorf
+            { latitude: 50.07, longitude: 8.23}, //Wiesbaden
+            { latitude: 48.77, longitude: 9.18}, //Stuttgart
+            { latitude: 53.08, longitude: 8.80}, //Bremen
+            { latitude: 51.05, longitude: 13.74}, //Dresden
+            { latitude: 52.37, longitude: 9.73}, //Hannover
+            { latitude: 50.98, longitude: 11.03}, //Erfurt
+            { latitude: 54.32, longitude: 10.12}, //Kiel
+            { latitude: 52.12, longitude: 11.63}, //Magdeburg
+            { latitude: 49.99, longitude: 8.25}, //Mainz
+            { latitude: 52.39, longitude: 13.06}, //Potsdam
+            { latitude: 49.24, longitude: 6.99}, //Saarbrucken
+            { latitude: 53.64, longitude: 11.40} //Schwerin
+            ];
 
-// Load GeoJSON file for Germany
-d3.json('2_hoch.geo.json').then((geojson) => {
-  // Merge your data with GeoJSON based on common identifier (e.g., region name)
-  const mergedData = mergeDataWithGeoJSON(cityData, geojson);
+        function fetchDataForLocation(location) {
+            const apiUrl = `https://air-quality-api.open-meteo.com/v1/air-quality?latitude=${location.latitude}&longitude=${location.longitude}&current=european_aqi&forecast_days=1`;
 
-  // Create choropleth map
-  createChoroplethMap(mergedData);
-});
+            return fetch(apiUrl)
+                .then(response => response.json())
+                .catch(error => {
+                    console.error(`Error fetching data for location (${location.latitude}, ${location.longitude}):`, error);
+                    return null;
+                });
+        }
 
-// Function to merge your data with GeoJSON
-function mergeDataWithGeoJSON(data, geojson) {
-  // Implement this function based on your data and GeoJSON structure
-  // Return a new GeoJSON object with added properties from your data
-  // For example, you might use the latitude and longitude to match features
+        function createChoroplethMapForLocation(data, location) {
+            console.log(`Creating choropleth map for location (${location.latitude}, ${location.longitude}):`, data);
 
-  // Dummy implementation
-  const mergedFeatures = geojson.features.map(feature => {
-    return {
-      ...feature,
-      properties: {
-        ...feature.properties,
-        european_aqi: getRandomAQI(), // Replace with actual AQI value
-      },
-    };
-  });
+            // Your D3.js code for creating the choropleth map goes here
+            // Use data and location to visualize the air quality on the map
+        }
 
-  return {
-    ...geojson,
-    features: mergedFeatures,
-  };
-}
+        Promise.all(locations.map(location => fetchDataForLocation(location)))
+            .then(dataArray => {
+                dataArray.forEach((data, index) => {
+                    if (data) {
+                        createChoroplethMapForLocation(data, locations[index]);
+                    }
+                });
+            });
+    </script>
+
+</body>
+</html>
+
 
 // Function to create choropleth map
 function createChoroplethMap(geojson) {
