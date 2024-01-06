@@ -1,5 +1,5 @@
 const width = 800;
-const height = 1000;
+const height = 900;
 
 const svg = d3.select('body').append('svg')
     .attr('width', width)
@@ -20,20 +20,38 @@ d3.json('2_hoch.geo.json').then(geojson => {
         .then(response => response.json())
         .then(airQualityData => {
             renderMap(geojson, airQualityData);
+            console.log("data: ", airQualityData)
         })
+        
         .catch(error => console.error('Error fetching air quality data:', error));
-
+    
     function renderMap(geoJson, airQualityData) {
-        const colorScale = d3.scaleSequential(d3.interpolateOrRd)
-            .domain([0, 100]);
+        const colorScale = d3.scaleLinear()
+            .domain([0, 50, 100]) // Map the domain of your data values
+            .range(['lightblue', 'yellow', 'red']); 
 
-        const getColor = d => (d.airQualityValue !== null ? colorScale(d.airQualityValue) : 'black');
+            const getColor = d => {
+                // Check if the data value is present and valid
+                if (d.airQualityValue !== undefined && d.airQualityValue !== null) {
+                    // Use the color scale to map the data value to a color
+                    return colorScale(d.airQualityValue);
+                } else {
+                    // Log information about features with missing or invalid data
+                    console.log('Invalid data for feature:', d);
+            
+                    // Return a default color for features with missing or invalid data
+                    return 'lightgray';
+                }
+            };
+            
+
 
         const joinedData = geoJson.features.map(feature => {
             const locationId = feature.properties.location_id;
             const airQualityDatum = airQualityData.find(d => d.location_id === locationId);
-            return { ...feature, airQualityValue: airQualityDatum ? airQualityDatum.value : null };
+            return { ...feature, airQualityValue: airQualityDatum ? airQualityDatum.current.european_aqi : null };
         });
+            
     console.log('Joined Data:', joinedData)
         svg.selectAll('path')
             .data(joinedData)
