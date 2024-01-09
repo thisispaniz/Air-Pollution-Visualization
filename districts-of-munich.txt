@@ -1,0 +1,25 @@
+48.1431° N, 11.5886° E altstadt-lehel
+48.1262° N, 11.5583° E ludwigsvorstadt
+48.1500° N, 11.5736° E maxvorstadt
+48.1679° N, 11.5711° E schwabing-west 
+48.1286° N, 11.5939° E Au-Haidhausen
+48.1126° N, 11.5451° E Sendling
+48.1152° N, 11.5198° E Sendling-Westpark
+48.1360° N, 11.5382° E Schwanthalerhöhe
+48.1551° N, 11.5230° E Neuhausen-Nymphenburg
+48.1811° N, 11.5115° E Moosach
+48.2106° N, 11.5722° E Milbertshofen-Am Hart
+48.2012° N, 11.6146° E Schwabing-Freimann
+48.1574° N, 11.6492° E Bogenhausen
+48.1273° N, 11.6347° E Berg am Laim
+48.1287° N, 11.6835° E Trudering-Riem
+48.1036° N, 11.6336° E Ramersdorf-Perlach
+48.1054° N, 11.5915° E Obergiesing-Fasangarten
+48.1004° N, 11.5664° E Untergiesing-Harlaching
+48.0768° N, 11.5120° E Thalkirchen-Obersendling-Forstenried-Fürstenried-Solln
+48.1154° N, 11.4791° E Hadern
+48.1405° N, 11.4616° E Pasing
+48.1611° N, 11.4136° E Aubing-Lochhausen-Langwied
+48.1902° N, 11.4676° E Allach
+48.2115° N, 11.5132° E Feldmoching-Hasenbergl
+48.1371° N, 11.5025° E Laim
