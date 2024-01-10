@@ -25,5 +25,7 @@ The chosen method is a map-based interface displaying color-coded air quality in
 
 * Real-time Updates: The map provides real-time updates, ensuring users have the latest information for decision-making.
 
+[Link Text]('Screenshot 2024-01-09 182557.png')
+
 
 
