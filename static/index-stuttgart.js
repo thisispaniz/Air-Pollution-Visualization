@@ -1,4 +1,4 @@
-const width = 1200;
+const width = 800;
 const height = 900;
 
 const svg = d3.select('body').append('svg')
@@ -6,8 +6,8 @@ const svg = d3.select('body').append('svg')
     .attr('height', height);
 
 const projection = d3.geoMercator()
-    .center([11.18, 48.77])
-    .scale(11000)
+    .center([9.18, 48.77])
+    .scale(12000)
     .translate([width / 2, height / 2]);
 
 const path = d3.geoPath().projection(projection);
@@ -28,8 +28,8 @@ const colorScale = d3.scaleLinear()
     .range(['#00FFF0', '#3AFF42', '#DBFF00', '#FF8A1F', '#FB504E', '#800000', '#1D0000']);
 
 // Load GeoJSON data
-d3.json('static/fake-munich-data.json').then(geojson => {
-    const apiUrl = 'https://air-quality-api.open-meteo.com/v1/air-quality?latitude=48.1431,48.1262,48.15,48.1679,48.1286,48.1126,48.1152,48.136,48.1551,48.1811,48.2106,48.2012,48.1574,48.1273,48.1287,48.1036,48.1054,48.1004,48.0768,48.1154,48.1405,48.1611,48.1902,48.2115,48.1371&longitude=11.5886,11.5583,11.5736,11.5711,11.5939,11.5451,11.5198,11.5382,11.523,11.5115,11.5722,11.6146,11.6492,11.6347,11.6835,11.6336,11.5915,11.5664,11.512,11.4791,11.4616,11.4136,11.4676,11.5132,11.5025&current=european_aqi';
+d3.json('static/fake-stuttgart-data.json').then(geojson => {
+    const apiUrl = 'https://air-quality-api.open-meteo.com/v1/air-quality?latitude=48.8474,48.8316,48.8391,48.8237,48.7609,48.7782,48.7671,48.7088,48.7304,48.2012,48.7414,48.7857,48.7268,48.7236,48.7746,48.7588,48.7442,48.7653,48.782,48.7791,48.7927,48.8142,48.8116&longitude=9.1509,9.1746,9.2222,9.2091,9.1549,9.1284,9.1088,9.2052,9.1079,11.6146,9.1774,9.2562,9.2015,9.146,9.2364,9.2441,9.214,9.2682,9.2087,9.1801,9.1685,9.1121,9.1589&current=european_aqi';
 
     fetch(apiUrl)
         .then(response => response.json())
