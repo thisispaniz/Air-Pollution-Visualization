@@ -28,7 +28,7 @@ const colorScale = d3.scaleLinear()
     .range(['#00FFF0', '#3AFF42', '#DBFF00', '#FF8A1F', '#FB504E', '#800000', '#1D0000']);
 
 // Load GeoJSON data
-d3.json('static/berlin-data.json').then(geojson => {
+d3.json('static/GEOJSON/berlin-data.json').then(geojson => {
     const apiUrl = 'https://air-quality-api.open-meteo.com/v1/air-quality?latitude=52.52,52.5159,52.5697,52.5075,52.5351,52.4299,52.4408,52.4812,52.4177,52.5225,52.51,52.6043&longitude=13.405,13.4544,13.4032,13.2921,13.1975,13.2294,13.3737,13.4358,13.6015,13.5865,13.4999,13.295&current=european_aqi';
 
     fetch(apiUrl)

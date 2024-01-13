@@ -28,7 +28,7 @@ const colorScale = d3.scaleLinear()
     .range(['#00FFF0', '#3AFF42', '#DBFF00', '#FF8A1F', '#FB504E', '#800000', '#1D0000']);
 
 // Load GeoJSON data
-d3.json('static/fake-saarbrücken-data.json').then(geojson => {
+d3.json('static/GEOJSON/fake-saarbrücken-data.json').then(geojson => {
     const apiUrl = 'https://air-quality-api.open-meteo.com/v1/air-quality?latitude=49.2245,49.2194,49.2247,49.2402,49.24,49.2751,49.2387,49.2766,49.2417,49.2093,49.2692,49.2094,49.2077,49.2042,49.2256,49.2098,49.2253,49.2138,49.1909,49.2079&longitude=6.9968,7.0186,7.0026,7.0031,6.9998,7.0771,7.0432,7.0225,7.0659,7.0301,7.0568,7.0213,7.0582,7.0005,7.0042,7.0379,7.0233,7.0128,7.0151,7.0837&current=european_aqi';
 
     fetch(apiUrl)

@@ -28,7 +28,7 @@ const colorScale = d3.scaleLinear()
     .range(['#00FFF0', '#3AFF42', '#DBFF00', '#FF8A1F', '#FB504E', '#800000', '#1D0000']);
 
 // Load GeoJSON data
-d3.json('static/fake-stuttgart-data.json').then(geojson => {
+d3.json('static/GEOJSON/fake-stuttgart-data.json').then(geojson => {
     const apiUrl = 'https://air-quality-api.open-meteo.com/v1/air-quality?latitude=48.8474,48.8316,48.8391,48.8237,48.7609,48.7782,48.7671,48.7088,48.7304,48.2012,48.7414,48.7857,48.7268,48.7236,48.7746,48.7588,48.7442,48.7653,48.782,48.7791,48.7927,48.8142,48.8116&longitude=9.1509,9.1746,9.2222,9.2091,9.1549,9.1284,9.1088,9.2052,9.1079,11.6146,9.1774,9.2562,9.2015,9.146,9.2364,9.2441,9.214,9.2682,9.2087,9.1801,9.1685,9.1121,9.1589&current=european_aqi';
 
     fetch(apiUrl)

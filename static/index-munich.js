@@ -28,7 +28,7 @@ const colorScale = d3.scaleLinear()
     .range(['#00FFF0', '#3AFF42', '#DBFF00', '#FF8A1F', '#FB504E', '#800000', '#1D0000']);
 
 // Load GeoJSON data
-d3.json('static/fake-munich-data.json').then(geojson => {
+d3.json('static/GEOJSON/fake-munich-data.json').then(geojson => {
     const apiUrl = 'https://air-quality-api.open-meteo.com/v1/air-quality?latitude=48.1431,48.1262,48.15,48.1679,48.1286,48.1126,48.1152,48.136,48.1551,48.1811,48.2106,48.2012,48.1574,48.1273,48.1287,48.1036,48.1054,48.1004,48.0768,48.1154,48.1405,48.1611,48.1902,48.2115,48.1371&longitude=11.5886,11.5583,11.5736,11.5711,11.5939,11.5451,11.5198,11.5382,11.523,11.5115,11.5722,11.6146,11.6492,11.6347,11.6835,11.6336,11.5915,11.5664,11.512,11.4791,11.4616,11.4136,11.4676,11.5132,11.5025&current=european_aqi';
 
     fetch(apiUrl)
