@@ -1,14 +1,14 @@
-const width = 1200;
-const height = 1000;
+const width = 800;
+const height = 900;
 
 const svg = d3.select('body').append('svg')
     .attr('width', width)
     .attr('height', height);
 
 const projection = d3.geoMercator()
-    .center([12.37, 51.34])
-    .scale(100000)
-    .translate([width /2,  height/2 ]);
+    .center([12.37, 51.33])
+    .scale(90000)
+    .translate([width /2,  height/2]);
 
 const path = d3.geoPath().projection(projection);
 
