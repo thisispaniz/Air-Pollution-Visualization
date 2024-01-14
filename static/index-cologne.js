@@ -7,8 +7,8 @@ const svg = d3.select('body').append('svg')
 
 const projection = d3.geoMercator()
     .center([6.99, 50.55])
-    .scale(75000)
-    .translate([width / 2.5, height / 1.75]);
+    .scale(100000)
+    .translate([width / 2,  1.75 * height ]);
 
 const path = d3.geoPath().projection(projection);
 
