@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choropleth Map</title>
+    <!-- Include D3.js library -->
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://d3js.org/d3.v4.js"></script>
+    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+    <script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
+</head>
+<body>
+
+    <script>
+        const locations = [
+            { latitude: 52.52, longitude: 13.40}, //Berlin 0
+            { latitude: 53.55, longitude: 9.99}, //Hamburg 1
+            { latitude: 48.14, longitude: 11.58}, //Munich2
+            { latitude: 51.23, longitude: 6.78}, //Düsseldorf3
+            { latitude: 50.07, longitude: 8.23}, //Wiesbaden4
+            { latitude: 48.77, longitude: 9.18}, //Stuttgart5
+            { latitude: 53.08, longitude: 8.80}, //Bremen6
+            { latitude: 51.05, longitude: 13.74}, //Dresden7
+            { latitude: 52.37, longitude: 9.73}, //Hannover8
+            { latitude: 50.98, longitude: 11.03}, //Erfurt9
+            { latitude: 54.32, longitude: 10.12}, //Kiel10
+            { latitude: 52.12, longitude: 11.63}, //Magdeburg11
+            { latitude: 49.99, longitude: 8.25}, //Mainz12
+            { latitude: 52.39, longitude: 13.06}, //Potsdam13
+            { latitude: 49.24, longitude: 6.99}, //Saarbrucken14
+            { latitude: 53.64, longitude: 11.40} //Schwerin15
+            ];
+
+        function fetchDataForLocation(location) {
+            const apiUrl = `https://air-quality-api.open-meteo.com/v1/air-quality?latitude=${location.latitude}&longitude=${location.longitude}&current=european_aqi&forecast_days=1`;
+
+            return fetch(apiUrl)
+                .then(response => response.json())
+                .catch(error => {
+                    console.error(`Error fetching data for location (${location.latitude}, ${location.longitude}):`, error);
+                    return null;
+                });
+        }
+
+        function createChoroplethMapForLocation(data, location) {
+            console.log(`Creating choropleth map for location (${location.latitude}, ${location.longitude}):`, data);
+
+            // Your D3.js code for creating the choropleth map goes here
+            // Use data and location to visualize the air quality on the map
+        }
+
+        Promise.all(locations.map(location => fetchDataForLocation(location)))
+            .then(dataArray => {
+                dataArray.forEach((data, index) => {
+                    if (data) {
+                        createChoroplethMapForLocation(data, locations[index]);
+                    }
+                });
+            });
+    </script>
+
+</body>
+</html>
+
+
+// Function to create choropleth map
+function createChoroplethMap(geojson) {
+  const svgWidth = 600;
+  const svgHeight = 400;
+
+  const svg = d3.select('body').append('svg')
+    .attr('width', svgWidth)
+    .attr('height', svgHeight);
+
+  // Create a projection for Germany (you might need to adjust this)
+  const projection = d3.geoMercator()
+    .fitSize([svgWidth, svgHeight], geojson);
+
+  // Create a path generator
+  const path = d3.geoPath().projection(projection);
+
+  // Define a color scale based on European AQI
+  const colorScale = d3.scaleSequential(d3.interpolateViridis)
+    .domain([0, d3.max(geojson.features, d => d.properties.european_aqi)]);
+
+  // Draw map
+  svg.selectAll('path')
+    .data(geojson.features)
+    .enter().append('path')
+    .attr('d', path)
+    .attr('fill', d => colorScale(d.properties.european_aqi));
+
+  // Add a legend
+  const legend = svg.append('g')
+    .attr('transform', `translate(20, 20)`);
+
+  const legendScale = d3.scaleLinear()
+    .domain([0, d3.max(geojson.features, d => d.properties.european_aqi)])
+    .range([0, 200]);
+
+  const legendAxis = d3.axisRight(legendScale);
+
+  legend.append('g')
+    .attr('class', 'legend-axis')
+    .call(legendAxis);
+
+  legend.append('text')
+    .attr('transform', 'rotate(-90)')
+    .attr('y', 6)
+    .attr('dy', '0.71em')
+    .attr('text-anchor', 'end')
+    .text('European AQI');
+}
+
+// Helper function to generate a random AQI for testing purposes
+function getRandomAQI() {
+  return Math.floor(Math.random() * 100);
+}
+
+</script>
+<script src="weather.js"></script>
+</body>
+</html>

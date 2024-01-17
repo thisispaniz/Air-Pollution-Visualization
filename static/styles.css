@@ -1,0 +1,66 @@
+body {
+    background-color: #282929;
+    display: flex;
+    justify-content: center;
+    margin-top: 0;
+}
+
+p {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: #cdcdcd;
+    font-size: 17px;
+    font-weight:bold;
+    margin-top: 0;
+}
+
+.tooltip {
+    position: absolute;
+    text-align: center;
+    padding: 13px;
+    font-size: 17px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    pointer-events: none;
+    height: 50px;
+    
+}
+
+.legend {
+    /* Add your styling properties here */
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 10px;
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.cities {
+    margin: 50px;
+    display: flex;
+    margin: 20px;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.city-link {
+    height: 50px;
+    background-color: rgb(255, 241, 43);
+    width: 230px;
+    margin: 10px;
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    align-items: center;
+    border-radius: 10px;
+    color: #474747;
+    text-decoration: none;
+}
+
+.city-link.active {
+    background-color: #bdbc97;
+}
