@@ -13,5 +13,5 @@ RUN pip install -r requirements.txt
 # Make port 8000 available to the world outside this container
 EXPOSE 8000
 
-# Run uvicorn with the specified command when the container launches
+# Run uvicorn with the specified command when the container launchess
 CMD ["uvicorn", "main:app", "--reload", "--host", "0.0.0.0", "--port", "8000"]
