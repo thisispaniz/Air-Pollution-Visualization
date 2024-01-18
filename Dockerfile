@@ -1,25 +1,17 @@
 # Use an official Python runtime as a parent image
-FROM python:3.12.1-bookworm
+FROM python:3.8
 
 # Set the working directory in the container
-WORKDIR /app
+WORKDIR /
 
-# Copy only the requirements file to optimize caching
-COPY requirements.txt .
+# Copy the current directory contents into the container at /app
+COPY . /
 
 # Install any needed packages specified in requirements.txt
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install -r requirements.txt
 
-# Copy the rest of the application code into the container
-COPY . .
-
-# Expose the port that Uvicorn will run on
+# Make port 8000 available to the world outside this container
 EXPOSE 8000
 
-# Create a script to run uvicorn on container start
-RUN echo "#!/bin/bash" > entrypoint.sh && \
-    echo "uvicorn main:app --host 0.0.0.0 --port 8000 --reload" >> entrypoint.sh && \
-    chmod +x entrypoint.sh
-
-# Set the entry point to the script
-ENTRYPOINT ["/app/entrypoint.sh"]
+# Run uvicorn with the specified command when the container launches
+CMD ["uvicorn", "main:app", "--reload", "--host", "0.0.0.0", "--port", "8000"]

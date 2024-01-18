@@ -1,0 +1,14 @@
+{
+    "name": "FastAPI-D3.js",
+    "build": {
+      "dockerfile": "Dockerfile",
+      "context": "..",
+      "args": { }
+    },
+    "appPort": [8000],
+    "extensions": [
+      "ms-python.python",
+      "dbaeumer.vscode-eslint"
+    ]
+  }
+  
