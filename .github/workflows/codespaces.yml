@@ -14,6 +14,6 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Setup Codespaces
-        uses: actions/setup-codespaces@v1
+        uses: github/codespaces-setup-action@v2
         with:
           dotfiles: true
