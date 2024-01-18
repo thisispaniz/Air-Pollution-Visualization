@@ -1,0 +1,19 @@
+name: Setup Codespaces
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  setup-codespaces:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Setup Codespaces
+        uses: actions/setup-codespaces@v1
+        with:
+          dotfiles: true
