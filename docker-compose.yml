@@ -1,8 +1,8 @@
 version: '3'
 services:
-  core_api:
+  dev_container:
     build: .
-    container_name: "dataviz_container"
+    container_name: "my_container"
     ports:
       - "8000:8000"
     
