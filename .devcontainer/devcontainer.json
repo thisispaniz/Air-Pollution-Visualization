@@ -5,9 +5,5 @@
         "context": ".."
     },
     "forwardPorts": [8000],
-    "settings": { 
-        "terminal.integrated.shell.linux": "/bin/bash"
-    },
-    "extensions": ["ms-python.python"],
     "postStartCommand": "python3 -m uvicorn main:app --reload"
 }
