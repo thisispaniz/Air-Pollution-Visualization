@@ -2,7 +2,7 @@ FROM python:3.10
 
 COPY ./requirements.txt app/requirements.txt
 
-WORKDIR /app
+WORKDIR /workspaces/Air-Pollution-Visualization/app
 
 RUN pip3 install -r requirements.txt
 
