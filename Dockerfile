@@ -1,17 +1,15 @@
-# 
-FROM python:3.8.2
+FROM python:3.10
 
-# 
-WORKDIR /AIR-POLLUTION-VISULIZATION
+COPY ./requirements.txt app/requirements.txt
 
-# 
-COPY ./requirements.txt /AIR-POLLUTION-VISULIZATION/requirements.txt
+WORKDIR /app
 
-# 
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip3 install -r requirements.txt
 
-# 
-COPY ./app /AIR-POLLUTION-VISULIZATION/app
+COPY app /app/
 
-# 
-CMD ["pip", "install", "fastapi", "uvicorn"]
+EXPOSE 8000
+
+ENTRYPOINT [ "uvicorn" ]
+
+CMD [ "--host", "0.0.0.0", "main:app" ]
