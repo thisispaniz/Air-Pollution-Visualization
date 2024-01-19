@@ -8,7 +8,7 @@ WORKDIR /AIR-POLLUTION-VISULIZATION
 COPY ./requirements.txt /AIR-POLLUTION-VISULIZATION/requirements.txt
 
 # 
-RUN pip install --no-cache-dir --upgrade -r /AIR-POLLUTION-VISULIZATION/requirements.txt
+RUN pip install fastapi uvicorn
 
 # 
 COPY ./app /AIR-POLLUTION-VISULIZATION/app
