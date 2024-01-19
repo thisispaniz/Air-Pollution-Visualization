@@ -1,0 +1,10 @@
+{
+    "name": "FastAPI Development",
+    "build": {
+        "dockerfile": "../dockerfile",
+        "context": ".."
+    },
+    "forwardPorts": [8000],
+
+    "postStartCommand": "python3 -m uvicorn main:app --reload"
+}
