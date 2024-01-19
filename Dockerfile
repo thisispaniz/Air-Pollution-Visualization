@@ -14,4 +14,4 @@ RUN pip install fastapi uvicorn
 COPY ./app /AIR-POLLUTION-VISULIZATION/app
 
 # 
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80", "--reload"]
+CMD ["pip", "install", "fastapi", "uvicorn"]
