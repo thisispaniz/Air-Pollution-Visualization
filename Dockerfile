@@ -8,4 +8,5 @@ COPY ./app /code/app
 
 RUN pip3 install -r requirements.txt 
 
-CMD ["uvicorn", "app.main:app", "--proxy-headers", "--host", "0.0.0.0", "--port", "80"]
+RUN python3 -m uvicorn app.main:app --relaod
+
