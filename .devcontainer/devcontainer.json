@@ -1,7 +1,11 @@
 {
-	"name": "My App",
-	"dockerFile": "Dockerfile",
+	"name": "Existing Dockerfile",
+	"build": {
+		// Sets the run context to one level up instead of the .devcontainer folder.
+		"context": "..",
+		// Update the 'dockerFile' property if you aren't using the standard 'Dockerfile' filename.
+		"dockerfile": "../Dockerfile"
+	},
 	"appPort": [8000],
 	"postCreateCommand": "pip install -r requirements.txt && python3 -m uvicorn app.main:app --reload"
   }
-  
