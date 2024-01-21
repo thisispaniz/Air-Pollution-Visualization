@@ -1,15 +1,11 @@
-FROM python:3.10
+FROM python:3.8.2
 
-COPY ./requirements.txt app/requirements.txt
+WORKDIR /code
 
-WORKDIR /workspaces/Air-Pollution-Visualization/app
+COPY ./requirements.txt /code/requirements.txt
 
-RUN pip3 install -r requirements.txt
+COPY ./app /code/app
 
-COPY app /app/
+RUN pip3 install -r requirements.txt 
 
-EXPOSE 8000
-
-ENTRYPOINT [ "uvicorn" ]
-
-CMD [ "--host", "0.0.0.0", "main:app" ]
+CMD ["uvicorn", "app.main:app", "--proxy-headers", "--host", "0.0.0.0", "--port", "80"]
