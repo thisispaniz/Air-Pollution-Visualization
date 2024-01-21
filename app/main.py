@@ -9,7 +9,7 @@ app.mount("/GEO", StaticFiles(directory="GEO"), name="GEO")
 templates = Jinja2Templates(directory="templates")
 
 def makehtml():
-    with open("/templates/index.html", "r", encoding="utf-8") as file:
+    with open("templates/index.html", "r", encoding="utf-8") as file:
         return file.read()
 
 
