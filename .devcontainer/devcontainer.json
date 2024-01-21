@@ -6,6 +6,19 @@
 		// Update the 'dockerFile' property if you aren't using the standard 'Dockerfile' filename.
 		"dockerfile": "../Dockerfile"
 	},
-	"appPort": [8000],
-	"postCreateCommand": "pip install -r requirements.txt && python3 -m uvicorn app.main:app --reload"
-  }
+
+	// Features to add to the dev container. More info: https://containers.dev/features.
+	// "features": {},
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	"forwardPorts": [8000],
+
+	// Uncomment the next line to run commands after the container is created.
+	"postCreateCommand": "cd app && python3 -m uvicorn main:app --reload"
+
+	// Configure tool-specific properties.
+	// "customizations": {},
+
+	// Uncomment to connect as an existing user other than the container default. More info: https://aka.ms/dev-containers-non-root.
+	// "remoteUser": "devcontainer"
+}
