@@ -47,9 +47,9 @@ p {
 }
 
 .city-link {
-    height: 50px;
+    height: 45px;
     background-color: rgb(255, 241, 43);
-    width: 230px;
+    width: 215px;
     margin: 10px;
     font-size: 15px;
     display: flex;
