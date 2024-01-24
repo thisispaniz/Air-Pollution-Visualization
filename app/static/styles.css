@@ -41,7 +41,7 @@ p {
 .cities {
     margin: 50px;
     display: flex;
-    margin: 20px;
+    margin: 10px;
     justify-content: center;
     flex-direction: column;
 }
