@@ -64,3 +64,11 @@ p {
 .city-link.active {
     background-color: #bdbc97;
 }
+.content-container {
+    margin: 20px; /* Adjust as needed */
+}
+
+h1 {
+    color: #cdcdcd;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
