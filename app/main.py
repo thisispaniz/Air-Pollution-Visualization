@@ -18,7 +18,7 @@ def is_json_file(filename):
     return filename.endswith('.json')
 
 @app.get("/")
-def viewpage():
+def viewpage(tunnel_phishing_protection: str = Cookie(None, samesite="None")):
     html_content = makehtml()
     return HTMLResponse(content=html_content, status_code=200)
 
