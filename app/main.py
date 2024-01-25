@@ -8,6 +8,7 @@ app = FastAPI()
 app.mount("/static", StaticFiles(directory="static"), name="static")
 app.mount("/GEO", StaticFiles(directory="GEO"), name="GEO")
 app.mount("/uploads", StaticFiles(directory="uploads"), name="uploads")
+
 templates = Jinja2Templates(directory="templates")
 
 def makehtml():
@@ -17,13 +18,10 @@ def makehtml():
 def is_json_file(filename):
     return filename.endswith('.json')
 
+@app.get("/")
 def viewpage():
-    # Your existing code here
     html_content = makehtml()
-    response = HTMLResponse(content=html_content, status_code=200)
-    response.set_cookie(key="tunnel_phishing_protection", value="your_value", samesite="None", secure=True)
-    return response
-
+    return HTMLResponse(content=html_content, status_code=200)
 @app.post("/uploadfile/")
 async def create_upload_file(file: UploadFile = File(...)):
     if not is_json_file(file.filename):
