@@ -64,8 +64,8 @@ p {
 .city-link.active {
     background-color: #bdbc97;
 }
-.content-container {
-    margin: 20px; /* Adjust as needed */
+.container {
+    display: flex;
 }
 
 h1 {

@@ -23,10 +23,11 @@ function handleLinkClick(event) {
     // Log the selected value (you can replace this with your logic)
     console.log("Selected value: " + selectedValue);
 
-    testing123();
-
-
-
+    if (selectedValue === 9) {
+        testing456();
+    } else {
+        testing123();
+    }
 
 }
 
@@ -110,6 +111,11 @@ projection[8] = d3.geoMercator()
     .scale(90000)
     .translate([width /2,  height/2]);
 
+projection[9] = d3.geoMercator()
+    .center([10, 51.5])
+    .scale(3000)
+    .translate([width/2, height/2])
+
 const apis =[];
 
 apis[0]='https://air-quality-api.open-meteo.com/v1/air-quality?latitude=52.52,52.5159,52.5697,52.5075,52.5351,52.4299,52.4408,52.4812,52.4177,52.5225,52.51,52.6043&longitude=13.405,13.4544,13.4032,13.2921,13.1975,13.2294,13.3737,13.4358,13.6015,13.5865,13.4999,13.295&current=european_aqi';
@@ -120,7 +126,7 @@ apis[4]='https://air-quality-api.open-meteo.com/v1/air-quality?latitude=50.1109,
 apis[5]='https://air-quality-api.open-meteo.com/v1/air-quality?latitude=48.8474,48.8316,48.8391,48.8237,48.7609,48.7782,48.7671,48.7088,48.7304,48.2012,48.7414,48.7857,48.7268,48.7236,48.7746,48.7588,48.7442,48.7653,48.782,48.7791,48.7927,48.8142,48.8116&longitude=9.1509,9.1746,9.2222,9.2091,9.1549,9.1284,9.1088,9.2052,9.1079,11.6146,9.1774,9.2562,9.2015,9.146,9.2364,9.2441,9.214,9.2682,9.2087,9.1801,9.1685,9.1121,9.1589&current=european_aqi';
 apis[6]='https://air-quality-api.open-meteo.com/v1/air-quality?latitude=51.1172,51.3156,51.2582,51.2255,51.2382,51.2404,51.2244,51.2695,51.3238,51.1984,51.2307,51.2093,51.1616,51.2202,51.2303,51.1945,51.2853,51.1892,51.2315,51.2587,51.2847,51.2772,51.2617,51.2643,51.2553,51.3004,51.2942,51.2806,51.2802,51.2399,51.2472,51.3022,51.2762,51.2121,51.2767,51.2453,51.2094,51.2135,51.1572,51.2808,51.2229,51.2657,51.2837,51.2247,51.1747,51.2211,51.2343,51.2359,51.2146,51.2448&longitude=6.8958,6.9303,6.8923,6.7727,6.7247,6.7326,6.7763,6.7178,6.7894,6.7155,6.7927,6.7775,6.8744,6.7912,6.8107,6.8782,6.8053,6.9127,6.8551,6.7815,6.7555,6.7099,6.6937,6.6343,6.7291,6.7458,6.7676,6.8069,6.7852,6.8969,6.7671,6.7614,6.7566,6.7743,6.7798,6.8063,6.7528,6.8592,6.8211,6.7174,6.9355,6.7328,6.7632,6.8112,6.7934,6.8222,6.9003,6.7992,6.8305,6.8021&current=european_aqi';
 apis[7]='https://air-quality-api.open-meteo.com/v1/air-quality?latitude=51.4131,51.4621,51.4566,51.3874,51.3774,51.4941,51.4467,51.3672,51.4345,51.3351,51.4057,51.3786,51.4529,51.4571,51.4449,51.3922,51.3937,51.4253,51.4276,51.4621&longitude=7.0461,7.0674,7.0185,7.0924,6.9947,7.0344,7.0105,7.0114,7.0497,7.0863,7.0501,7.0401,7.0081,7.0073,7.0254,7.0103,7.0133,7.0259,7.0285,7.0123&current=european_aqi'
-apis[8]='https://air-quality-api.open-meteo.com/v1/air-quality?latitude=51.3404,51.3418,51.3252,51.3283,51.3398,51.3546,51.3618,51.3658,51.3745,51.4027,51.4067,51.4151,51.3823,51.3985,51.3265,51.3385,51.3391,51.3583,51.3821,51.3701,51.3504,51.3553,51.3255,51.3213,51.3409,51.3543,51.3689,51.3802,51.3552,51.3332,51.3095,51.3375,51.3268,51.3297,51.3121,51.3378,51.3423,51.3088,51.3079,51.3228,51.3033,51.2791,51.2993,51.3057,51.2834,51.2673,51.3066,51.3198,51.3287,51.3267,51.3187,51.3133,51.2945,51.2773,51.2882,51.3437,51.3397,51.3678,51.3838,51.3519,51.3465,51.3473,51.4086&longitude=12.377,12.4064,12.4134,12.3918,12.3654,12.3456,12.3813,12.4329,12.4606,12.4362,12.4538,12.4553,12.5505,12.4872,12.4007,12.4134,12.4264,12.4523,12.5105,12.4974,12.5047,12.5507,12.5286,12.5326,12.5559,12.4927,12.4922,12.4991,12.4265,12.3722,12.3762,12.3281,12.3373,12.3113,12.3096,12.2681,12.2484,12.2689,12.3023,12.3695,12.3939,12.4013,12.4218,12.4585,12.4718,12.4672,12.5304,12.5313,12.5428,12.5568,12.5705,12.5914,12.5857,12.5767,12.5531,12.3221,12.3432,12.3318,12.3146,12.3336,12.3553,12.3762,12.4668&current=european_aqi';
+apis[9]='https://air-quality-api.open-meteo.com/v1/air-quality?latitude=48.6616,48.7771,52.52,51.5607,53.0793,53.5511,50.6521,52.6367,53.6127,51.4332,49.3964,49.3964,51.1045,51.9503,54.3165,51.0109&longitude=9.3501,11.4312,13.405,12.663,8.8017,9.9937,9.1624,9.8451,12.4295,7.6616,7.715,6.845,13.2017,11.6922,10.1355,10.8453&current=european_aqi'
 
 
 
@@ -217,5 +223,100 @@ function testing123(){
             .style('border', '1px solid #ddd')
             .style('background-color', '#fff');
             
-    });
+    });}
+
+    function testing456(){
+        const path = d3.geoPath().projection(projection[selectedValue]);
+        svg.selectAll('path').remove();
+        
+        // Load GeoJSON data
+        d3.json('../uploads/citydata.json').then(combinedGeojson => {
+            const geojson = combinedGeojson;
+            const apiUrl = apis[selectedValue];
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(airQualityData => {
+                    renderMap(combinedGeojson, airQualityData);
+                    console.log("data: ", airQualityData)
+                })
+                .catch(error => console.error('Error fetching air quality data:', error));
+    
+            function renderMap(geoJson, airQualityData) {
+                try {
+                    const getColor = d => {
+                        if (d.airQualityValue !== undefined && d.airQualityValue !== null) {
+                            return colorScale(d.airQualityValue);
+                        } else {
+                            console.log('Invalid data for feature:', d);
+                            return '#282929';
+                        }
+                    };
+    
+                    const joinedData = geoJson.features.map(feature => {
+                        const locationId = feature.properties.location_id;
+                        const airQualityDatum = airQualityData.find(d => d.location_id === locationId);
+                        return { ...feature, airQualityValue: airQualityDatum ? airQualityDatum.current.european_aqi : null };
+                    });
+    
+                    console.log('Joined Data:', joinedData);
+    
+                    svg.selectAll('path')
+                        .data(joinedData)
+                        .enter()
+                        .append('path')
+                        .attr('d', path)
+                        .attr('fill', d => getColor(d))
+                        .attr('stroke', 'white')
+                        .on('mouseover', function (event, d) {
+                            const completeData = d3.select(this).datum();
+                            console.log('Complete Data:', completeData);
+    
+                            d3.select(this)
+                                .style("opacity", 0.6);
+    
+                            tooltip.transition()
+                                .duration(200)
+                                .style('opacity', 0.9);
+    
+                            if (completeData.properties && completeData.properties.name) {
+                                tooltip.html(`<strong>${completeData.properties.name}</strong><br>Air Quality: ${completeData.airQualityValue}`)
+                                    .style('left', (event.pageX + 10) + 'px')
+                                    .style('top', (event.pageY - 18) + 'px');
+                            } else {
+                                console.error('Invalid data for tooltip:', completeData);
+                            }
+                        })
+                        .on('mouseout', function () {
+                            d3.select(this)
+                                .attr('fill', d => getColor(d))
+                                .style('opacity', 1);
+    
+                            tooltip.transition()
+                                .duration(500)
+                                .style('opacity', 0);
+                        });
+                } catch (error) {
+                    console.error('Error rendering map:', error);
+                }
+            }
+    
+            const legendBlocks = legendContainer.selectAll('.legend-block')
+                .data(legendData)
+                .enter()
+                .append('div')
+                .attr('class', 'legend-block');
+    
+            legendBlocks
+                .style('background-color', d => colorScale(d))
+                .text((d, i) => `${legendLabels[i]} (${d}-${legendData[i + 1] || 'Max'})`);
+    
+            legendContainer.style('position', 'absolute')
+                .style('bottom', '20px')
+                .style('right', '20px')
+                .style('width', '200px')
+                .style('padding', '10px')
+                .style('border', '1px solid #ddd')
+                .style('background-color', '#fff');
+                
+        });
 }
