@@ -17,10 +17,12 @@ def makehtml():
 def is_json_file(filename):
     return filename.endswith('.json')
 
-@app.get("/")
-def viewpage(tunnel_phishing_protection: str = Cookie(None, samesite="None")):
+def viewpage():
+    # Your existing code here
     html_content = makehtml()
-    return HTMLResponse(content=html_content, status_code=200)
+    response = HTMLResponse(content=html_content, status_code=200)
+    response.set_cookie(key="tunnel_phishing_protection", value="your_value", samesite="None", secure=True)
+    return response
 
 @app.post("/uploadfile/")
 async def create_upload_file(file: UploadFile = File(...)):
