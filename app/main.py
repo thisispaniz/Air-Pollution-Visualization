@@ -7,7 +7,6 @@ import os
 app = FastAPI()
 app.mount("/static", StaticFiles(directory="static"), name="static")
 app.mount("/GEO", StaticFiles(directory="GEO"), name="GEO")
-app.mount("/uploadedfiles", StaticFiles(directory="uploadedfiles"), name="uploadedfiles")
 
 
 templates = Jinja2Templates(directory="templates")
@@ -28,7 +27,7 @@ async def create_upload_file(file: UploadFile = File(...)):
     if not is_json_file(file.filename):
         raise HTTPException(status_code=400, detail="Uploaded file must be a JSON file")
     new_filename = "citydata.json"
-    upload_dir = "uploadedfiles"
+    upload_dir = "static"
     os.makedirs(upload_dir, exist_ok=True)
     file_path = os.path.join(upload_dir, new_filename)
     
