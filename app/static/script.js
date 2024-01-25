@@ -230,7 +230,7 @@ function testing123(){
         svg.selectAll('path').remove();
         
         // Load GeoJSON data
-        d3.json('../uploads/citydata.json').then(combinedGeojson => {
+        d3.json('../uploadedfiles/citydata.json').then(combinedGeojson => {
             const geojson = combinedGeojson;
             const apiUrl = apis[selectedValue];
             fetch(apiUrl)
