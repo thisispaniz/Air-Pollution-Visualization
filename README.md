@@ -1,22 +1,22 @@
 # Air-Pollution-Visualization
-This app empowers users with respiratory conditions to assess real-time air quality in different areas, aiding decisions on outdoor activities.
+This app is a tool for people with respitory problems (specifically people suffering from Asthma) who live in the 8 biggest cities of germany. They can use this app to check the air quality in different districts of the city. This could help them avoid restraining their longs.
 
-##Overview
-This project aims to provide a visualization of air pollution in different areas, specifically designed to assist individuals with respiratory problems. The application helps users make informed decisions about outdoor activities based on air quality data.
-
-
-##Key User Group
-Our primary users are individuals with respiratory problems, such as asthma or other respiratory conditions, who need to assess the air quality in various areas before deciding to go outside.
+## Overview
+This project uses choropleth maps and an API (https://open-meteo.com/) to visualize real-time data about the air quality of the specified districts. The color of each district corresponds with the air quality of that district. Also by hovering on each district the user can get an accurate air quality value. This app uses the European AQI.
 
 
-##User Objectives
+## Key User Group
+The primary user group are people suffering from asthma who live in big cities and are in the risk of asthma attacks.
+
+
+## User Objectives
 Users of this application seek to:
 
 * Understand the current air quality in specific locations.
 * Determine whether it's safe to go outside without a mask.
 * Plan outdoor activities based on real-time air pollution data.
 
-##The chosen visualization
+## The chosen visualization
 The chosen method is a map-based interface displaying color-coded air quality indices for different areas. This method is effective because:
 
 * Intuitive Interpretation: Users can quickly interpret air quality levels through color gradients on the map.
