@@ -1,6 +1,8 @@
 # Air-Pollution-Visualization
 This app is a tool for people with respitory problems (specifically people suffering from Asthma) who live in the 8 biggest cities of germany. They can use this app to check the air quality in different districts of the city. This could help them avoid restraining their longs.
 
+<img src='readme images/2.png'>
+
 ## Overview
 This project uses choropleth maps and an API (https://open-meteo.com/) to visualize real-time data about the air quality of the specified districts. The color of each district corresponds with the air quality of that district. Also by hovering on each district the user can get an accurate air quality value. This app uses the European AQI.
 
