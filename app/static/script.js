@@ -74,12 +74,12 @@ projection[0] = d3.geoMercator()
 projection[1] = d3.geoMercator()
     .center([9.99, 53.55])
     .scale(75000)
-    .translate([width / 3, height/1.75 ]);
+    .translate([(width / 3) + 80, height/1.75 ]);
 
 projection[2] = d3.geoMercator()
     .center([11.18, 48.77])
     .scale(11000)
-    .translate([width / 2.5, height / 2]);
+    .translate([width / 2.5 - 30, height / 2]);
 
 projection[3] = d3.geoMercator()
     .center([6.99, 50.55])

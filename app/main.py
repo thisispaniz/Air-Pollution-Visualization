@@ -31,6 +31,13 @@ async def create_upload_file(file: UploadFile = File(...)):
     os.makedirs(upload_dir, exist_ok=True)
     file_path = os.path.join(upload_dir, new_filename)
     
+    upload_dir = "uploads"
+    os.makedirs(upload_dir, exist_ok=True)
+    file_path = os.path.join(upload_dir, new_filename)
+    
+    if os.path.exists(file_path):
+        raise HTTPException(status_code=400, detail="This file has already been uploaded!")
+    
     with open(file_path, "wb") as f:
         f.write(file.file.read())
         
