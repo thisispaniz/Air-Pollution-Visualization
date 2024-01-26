@@ -31,7 +31,7 @@ async def create_upload_file(file: UploadFile = File(...)):
     os.makedirs(upload_dir, exist_ok=True)
     file_path = os.path.join(upload_dir, new_filename)
     
-    upload_dir = "uploads"
+    upload_dir = "static"
     os.makedirs(upload_dir, exist_ok=True)
     file_path = os.path.join(upload_dir, new_filename)
     
