@@ -52,7 +52,7 @@ You can click on a cities name to see it's map. When the map is displayed you ca
 
 <img src='readme images/2.png'>
 
-There is the functionality to post a .json file of a new city to see the visualization of. You can do that by clicking on Browse and then selecting the file and then clicking on Upload. There is a sample file in this repository that you can use. The data file needs to have this attribute:
+There is the functionality to post a .json file of a new city to see the visualization of. You can do that by clicking on Browse and then selecting the file and then clicking on Upload. There is a sample file in this repository that you can use (name: sample-data-for-uploading.json). The data file needs to have this attribute:
 
 <img src='readme images/3.png'>
 
