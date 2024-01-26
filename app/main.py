@@ -36,7 +36,7 @@ async def create_upload_file(file: UploadFile = File(...)):
     file_path = os.path.join(upload_dir, new_filename)
     
     if os.path.exists(file_path):
-        raise HTTPException(status_code=400, detail="This file has already been uploaded!")
+        raise HTTPException(status_code=400, detail="There is already a file with this specifications in the directory. You can delete the citydata.json file from the static folder and try again.")
     
     with open(file_path, "wb") as f:
         f.write(file.file.read())
