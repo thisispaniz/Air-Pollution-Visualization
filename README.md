@@ -74,11 +74,13 @@ When this happens click on back and go back to the main page. You can now see th
 
 ## Known issues and upcoming updates
 
+* If you already have an app running on the 8000 port the app will not load.
+
 * The option to be redirected to the google map page of each location when you click on a district will be implemented. (Sorry I couldn't make it happen by the exam date 🥲)
   
 * The json file can be seperated into individual cities so that the load time is decreased. Currently that couldn't be done because of the number of files limitations for the exam.
   
 * On firefox this error pops up in the console: Cookie “tunnel_phishing_protection” does not have a proper “SameSite” attribute value. Soon, cookies without the “SameSite” attribute or with an invalid value will be treated as “Lax”. This means that the cookie will no longer be sent in third-party contexts. If your application depends on this cookie being available in such contexts, please add the “SameSite=None“ attribute to it. To know more about the “SameSite“ attribute, read https://developer.mozilla.org/docs/Web/HTTP/Headers/Set-Cookie/SameSite
 
-* The upload file function can be improved.
+* The upload file function needs to be improved.
 
