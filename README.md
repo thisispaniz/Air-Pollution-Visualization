@@ -76,6 +76,8 @@ When this happens click on back and go back to the main page. You can now see th
 
 * If you already have an app running on the 8000 port the app will not load.
 
+* If you face any issues while running the app, the problem maybe the cache. Close the codespaces and create a new codespace, that would most likely fi the issue.
+
 * The option to be redirected to the google map page of each location when you click on a district will be implemented. (Sorry I couldn't make it happen by the exam date 🥲)
   
 * The json file can be seperated into individual cities so that the load time is decreased. Currently that couldn't be done because of the number of files limitations for the exam.
