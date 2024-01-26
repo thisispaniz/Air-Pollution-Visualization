@@ -27,7 +27,46 @@ The chosen method is a map-based interface displaying color-coded air quality in
 
 * Real-time Updates: The map provides real-time updates, ensuring users have the latest information for decision-making.
 
-<img src='Screenshot 2024-01-09 182557.png'>
+## How it works
+First create a CodeSpace from this repository:
+
+<img src='readme images/00.png'>
+
+When the CodeSpace is created the command cd app && python3 -m uvicorn main:app --reload will run automatically. (This might take one or two minutes.)
+
+<img src='readme images/01.png'>
+
+When that happens switch to the ports tab and ctrl + click on the link.
+
+<img src='readme images/02.png'>
+
+This is what the app looks like untouched:
+
+<img src='readme images/1.png'>
+
+You can click on a cities name to see it's map. When the map is displayed you can hover on different districts to see the European AQI value of that district.
+
+<img src='readme images/2.png'>
+
+There is the functionality to post a .json file of a new city to see the visualization of. You can do that by clicking on Browse and then selecting the file and then clicking on Upload. There is a sample file in this repository that you can use. The data file needs to have this attribute:
+
+<img src='readme images/3.png'>
+
+There are three possible outcomes to this upload. if the file you upload is not a .json file you get this error:
+
+<img src='readme images/7.png'>
+
+If the file you are uploading has already been uploaded before you get the following error:
+
+<img src='readme images/5.png'>
+
+And finally if everything in this order you get this message that indicates the file has been uploaded:
+
+<img src='readme images/4.png'>
+
+When this happens click on back and go back to the main page. You can now see the visualization for the map data you uploaded by clicking on the NEWLY ADDED CITY button.
+
+<img src='readme images/6.png'>
 
 
 
