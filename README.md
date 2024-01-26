@@ -44,6 +44,10 @@ This is what the app looks like untouched:
 
 <img src='readme images/1.png'>
 
+This is the color scale of the map:
+
+<img src='readme images/color guide.png'>
+
 You can click on a cities name to see it's map. When the map is displayed you can hover on different districts to see the European AQI value of that district.
 
 <img src='readme images/2.png'>
