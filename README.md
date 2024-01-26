@@ -50,7 +50,7 @@ This is the color scale of the map:
 
 You can click on a cities name to see it's map. When the map is displayed you can hover on different districts to see the European AQI value of that district.
 
-<img src='readme images/2.png'>
+<img src='readme images/Screenshot 2024-01-26 123120.png'>
 
 There is the functionality to post a .json file of a new city to see the visualization of. You can do that by clicking on Browse and then selecting the file and then clicking on Upload. There is a sample file in this repository that you can use (name: sample-data-for-uploading.json). The data file needs to have this attribute:
 
@@ -70,7 +70,7 @@ And finally if everything in this order you get this message that indicates the 
 
 When this happens click on back and go back to the main page. You can now see the visualization for the map data you uploaded by clicking on the NEWLY ADDED CITY button.
 
-<img src='readme images/6.png'>
+<img src='readme images/Screenshot 2024-01-26 123052.png'>
 
 ## Known issues and upcoming updates
 
