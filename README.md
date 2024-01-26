@@ -1,5 +1,5 @@
 # Air-Pollution-Visualization
-This app is a tool for people with respitory problems (specifically people suffering from Asthma) who live in the 9 biggest cities of germany. They can use this app to check the air quality in different districts of the city. This could help them avoid restraining their longs.
+This app is a tool for people with respitory problems (specifically people suffering from Asthma) who live in the 9 biggest cities of germany. They can use this app to check the air quality in different districts of the city. This could help them avoid restraining their lungs.
 
 <img src='readme images/2.png'>
 
